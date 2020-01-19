@@ -25,11 +25,12 @@ class Restaurant {
 
     int main_dish() {
         Hashtable<String, List<String>> main_dish_type = new Hashtable<String, List<String>>();
-        List<String> all_time_favorite = Arrays.asList("French Fries", "Chilli Cheese Toast",
-                "Chilli Cheese Gralic Toast", "Garlic Bread", "Garlic Bread with Cheese");
-        List<String> sandwich = Arrays.asList("Plain Sandwich", "Grilled Sandwich", "Club Sandwich");
-        List<String> main_course = Arrays.asList("Veg Chopsouey", "Chilly Paneer Gravy", "Manchurian Gravy",
-                "Sweet & Sour Veg", "Mix. Veg. in Hot Garlic Sauce", "Shreded Potatoes in Hot Garlic");
+        List<String> all_time_favorite = Arrays.asList("Cheese French Fries", "Cheese Garlic Bread", "Chilli Cheese Toast",
+                "Chilli Garlic Toast", "Cheese Garlic Bread");
+            out.println(all_time_favorite);
+        List<String> sandwich = Arrays.asList("Plain Sandwich", "Grill Sandwich", "Club Sandwich");
+        List<String> main_course = Arrays.asList("Mix. Veg.in garlic","Veg Chopsouey sauce", "Shreded Potatoes", "Manchurian Gravy",
+                "Sweet & Sour Veg", "Chilly Paneer Gravy");
         {
             main_dish_type.put("All Time Favorite", all_time_favorite);
             main_dish_type.put("Sandwich", sandwich);
@@ -52,20 +53,20 @@ class Restaurant {
         }
         Scanner obj1 = new Scanner(System.in);
         dish_no = obj1.nextInt();
-        out.println("Item \t\t Price");
+        out.println("Item \t\t\t Price");
         switch (dish_no) {
         case 1:
-            for (int i = 0; i <= main_course.size(); i++) {
+            for (int i = 0; i <= main_course.size() - 1; i++) {
                 out.println(main_course.get(i) + "\t" + main_course_pr.get(i));
             }
             break;
         case 2:
-            for (int i = 0; i <= sandwich.size(); i++) {
-                out.println(sandwich.get(i) + "\t" + sandwich_pr.get(i));
+            for (int i = 0; i <= sandwich.size() - 1; i++) {
+                out.println(sandwich.get(i) + "\t\t\t" + sandwich_pr.get(i));
             }
             break;
         case 3:
-            for (int i = 1; i < all_time_favorite_pr.size() + 1; i++) {
+            for (int i = 0; i <= all_time_favorite.size() - 1 ; i++) {
                 out.println(all_time_favorite.get(i) + "\t" + all_time_favorite_pr.get(i));
             }
             break;
@@ -76,7 +77,7 @@ class Restaurant {
     }
 
     int healthy_dish() {
-        out.println("hey");
+        
         return 1;
     }
 
