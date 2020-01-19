@@ -3,12 +3,15 @@ import java.util.*;
 
 class Restaurant {
     static Hashtable<String, Integer> cart = new Hashtable<String, Integer>();
+    static List<Integer> quantities = new ArrayList<Integer>();
     int dish_type;
     int type;
     int dish_no;
     int item_no;
     int another_ord;
     int quantity;
+    int total_item;
+    int total_price;
     static String Resto_name = "ChopaChops";
 
     void dish_config() {
@@ -28,7 +31,6 @@ class Restaurant {
         Hashtable<String, List<String>> main_dish_type = new Hashtable<String, List<String>>();
         List<String> all_time_favorite = Arrays.asList("Cheese French Fries", "Cheese Garlic Bread",
                 "Chilli Cheese Toast", "Chilli Garlic Toast", "Cheese Garlic Bread");
-        out.println(all_time_favorite);
         List<String> sandwich = Arrays.asList("Plain Sandwich", "Grill Sandwich", "Club Sandwich");
         List<String> main_course = Arrays.asList("Mix. Veg.in garlic", "Veg Chopsouey sauce", "Shreded Potatoes",
                 "Manchurian Gravy", "Sweet & Sour Veg", "Chilly Paneer Gravy");
@@ -84,10 +86,13 @@ class Restaurant {
         quantity = obj1.nextInt();
         if (dish_no == 1) {
             cart.put(main_course.get(item_no - 1), (main_course_pr.get(item_no - 1) * quantity));
+            quantities.add(quantity);
         } else if (dish_no == 2) {
-            cart.put(sandwich.get(item_no - 1), (sandwich_pr.get(item_no - 1)*quantity));
+            cart.put(sandwich.get(item_no - 1), (sandwich_pr.get(item_no - 1) * quantity));
+            quantities.add(quantity);
         } else if (dish_no == 3) {
             cart.put(all_time_favorite.get(item_no - 1), (all_time_favorite_pr.get(item_no - 1) * quantity));
+            quantities.add(quantity);
         } else {
             out.println("Press 1 for this menu");
             out.println("Press 2 for this healthy menu like salad");
@@ -96,10 +101,12 @@ class Restaurant {
             type = (another_ord == 1) ? main_dish() : (another_ord == 2) ? healthy_dish() : final_out();
         }
         out.println("Selected item: ");
-        out.println("Item \t\t\t Price");
+        out.println("Item \t\t\t Quantity \t\t\t Price");
+
         for (Map.Entry<String, Integer> m : cart.entrySet()) {
-            System.out.println(m.getKey() + "\t\t\t" + m.getValue());
+            out.println(m.getKey() + "\t\t\t" + quantity + "\t\t\t" + m.getValue());
         }
+
         out.println("Would You like to Anything more: ");
         out.println("Press 1 for this menu");
         out.println("Press 2 for this healthy menu like salad");
@@ -115,6 +122,14 @@ class Restaurant {
     }
 
     int final_out() {
+        out.println("Item \t\t\t Quantity \t\t\t Price");
+
+        for (Map.Entry<String, Integer> m : cart.entrySet()) {
+            out.println(m.getKey() + "\t\t\t" + "\t\t\t" + m.getValue());
+            total_price = total_price + m.getValue();
+            total_item = total_item + 1;
+        }
+        out.println("Total Item:" + total_item + " " + "Total Price: " + total_price);
         return 2;
     }
 
@@ -122,7 +137,8 @@ class Restaurant {
         Restaurant r1 = new Restaurant();
         r1.dish_config();
         cart.clear();
-        out.println("\t\t\tThank You! Visit us again. Sorry,we are trying to serve at the best price as much as possible.");
+        out.println(
+                "\t\t\tThank You! Visit us again. Sorry,we are trying to serve at the best price as much as possible.");
 
     }
 }
