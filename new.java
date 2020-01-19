@@ -1,23 +1,35 @@
-import static java.lang.System.*;  
+import static java.lang.System.*;
+/*
+class New{
+    public static void main(String[] args) { // it will take as an arguement
+        for(String s:args){
+            out.println(s);
+        }
+    }
+}
+*/
 
 class Calculator {
     int a = 10;
-    int b = 5;
+    double b = 20;
 
     void add() {
-        out.print(a + b);
+        out.println(a + b);
     }
 
     void sub() {
-        out.print(a - b);
+        out.println(a - b);
     }
 
     void mul() {
-        out.print(a * b);
+        out.println(a * b);
     }
 
     void div() {
-        out.print(a / b);
+        // float f=9.0f;
+        // out.println(f);
+        double c = (int) (a / b); // typecasting
+        out.println(c);
     }
 
     public static void main(String[] args) {
