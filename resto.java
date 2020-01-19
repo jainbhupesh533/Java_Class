@@ -8,6 +8,7 @@ class Restaurant {
     int dish_no;
     int item_no;
     int another_ord;
+    int quantity;
     static String Resto_name = "ChopaChops";
 
     void dish_config() {
@@ -79,12 +80,14 @@ class Restaurant {
         }
         out.println("Please Choose Your Food by pressing item no: ");
         item_no = obj1.nextInt();
+        out.println("Enter Quantity: ");
+        quantity = obj1.nextInt();
         if (dish_no == 1) {
-            cart.put(main_course.get(item_no - 1), main_course_pr.get(item_no - 1));
+            cart.put(main_course.get(item_no - 1), (main_course_pr.get(item_no - 1) * quantity));
         } else if (dish_no == 2) {
-            cart.put(sandwich.get(item_no - 1), sandwich_pr.get(item_no - 1));
+            cart.put(sandwich.get(item_no - 1), (sandwich_pr.get(item_no - 1)*quantity));
         } else if (dish_no == 3) {
-            cart.put(all_time_favorite.get(item_no - 1), all_time_favorite_pr.get(item_no - 1));
+            cart.put(all_time_favorite.get(item_no - 1), (all_time_favorite_pr.get(item_no - 1) * quantity));
         } else {
             out.println("Press 1 for this menu");
             out.println("Press 2 for this healthy menu like salad");
@@ -95,7 +98,7 @@ class Restaurant {
         out.println("Selected item: ");
         out.println("Item \t\t\t Price");
         for (Map.Entry<String, Integer> m : cart.entrySet()) {
-            System.out.println(m.getKey() + "\t" + m.getValue());
+            System.out.println(m.getKey() + "\t\t\t" + m.getValue());
         }
         out.println("Would You like to Anything more: ");
         out.println("Press 1 for this menu");
@@ -118,6 +121,8 @@ class Restaurant {
     public static void main(String[] args) {
         Restaurant r1 = new Restaurant();
         r1.dish_config();
+        cart.clear();
+        out.println("\t\t\tThank You! Visit us again. Sorry,we are trying to serve at the best price as much as possible.");
 
     }
 }
