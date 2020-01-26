@@ -4,14 +4,8 @@ import java.util.*;
 class Restaurant {
     static Hashtable<String, Integer> cart = new Hashtable<String, Integer>();
     static List<Integer> quantities = new ArrayList<Integer>();
-    int dish_type;
-    int type;
-    int dish_no;
-    int item_no;
-    int another_ord;
-    int quantity;
-    int total_item;
-    int total_price;
+    int dish_type, type, dish_no, item_no, another_ord, quantity, total_item, total_price;
+
     static String Resto_name = "ChopaChops";
 
     void dish_config() {
@@ -20,7 +14,7 @@ class Restaurant {
         out.println("\t\t Hope U will enjoy!!!");
 
         Scanner obj = new Scanner(System.in);
-        out.println("Choose the type of dish: ");
+        out.println("\nChoose the type of dish: ");
         out.println("Enter 1 for Healthy Meals \nEnter 2 for regular meals");
         dish_type = obj.nextInt();
 
@@ -45,14 +39,9 @@ class Restaurant {
         out.println("Welcome to the main Course!!");
         out.println("Choose the type by entering its number: ");
         out.println("dish_no\tMain_Course");
-        String[] keys = new String[main_dish_type.size()];
-        int index = 0;
+        int index = 1;
         for (Map.Entry<String, List<String>> mapEntry : main_dish_type.entrySet()) {
-            keys[index] = mapEntry.getKey();
-            index++;
-        }
-        for (int i = 0; i < keys.length; i++) {
-            out.println((i + 1) + "\t" + keys[i]);
+            out.println(index++ + "\t" + mapEntry.getKey());
         }
         Scanner obj1 = new Scanner(System.in);
         dish_no = obj1.nextInt();
@@ -100,14 +89,14 @@ class Restaurant {
             another_ord = obj1.nextInt();
             type = (another_ord == 1) ? main_dish() : (another_ord == 2) ? healthy_dish() : final_out();
         }
-        out.println("Selected item: ");
+        out.println("\nSelected item: ");
         out.println("Item \t\t\t Quantity \t\t\t Price");
-
+        int q = 0;
         for (Map.Entry<String, Integer> m : cart.entrySet()) {
-            out.println(m.getKey() + "\t\t\t" + quantity + "\t\t\t" + m.getValue());
+            out.println(m.getKey() + "\t\t\t" + quantities.get(q++) + "\t\t\t" + m.getValue());
         }
 
-        out.println("Would You like to Anything more: ");
+        out.println("\nWould You like to Anything more: ");
         out.println("Press 1 for this menu");
         out.println("Press 2 for this healthy menu like salad");
         out.println("Press 3 for Checkout");
@@ -122,14 +111,14 @@ class Restaurant {
     }
 
     int final_out() {
-        out.println("Item \t\t\t Quantity \t\t\t Price");
-
+        out.println("\nItem \t\t\t Quantity \t\t\t Price");
+        int k = 0;
         for (Map.Entry<String, Integer> m : cart.entrySet()) {
-            out.println(m.getKey() + "\t\t\t" + "\t\t\t" + m.getValue());
+            out.println(m.getKey() + "\t\t\t" + quantities.get(k++) + "\t\t\t" + m.getValue());
             total_price = total_price + m.getValue();
             total_item = total_item + 1;
         }
-        out.println("Total Item:" + total_item + " " + "Total Price: " + total_price);
+        out.println("\nTotal Item:" + total_item + " " + "\nTotal Price: " + total_price);
         return 2;
     }
 
@@ -138,7 +127,7 @@ class Restaurant {
         r1.dish_config();
         cart.clear();
         out.println(
-                "\t\t\tThank You! Visit us again. Sorry,we are trying to serve at the best price as much as possible.");
+                "\n\t\t\tThank You! Visit us again. Sorry,we are trying to serve at the best price as much as possible.");
 
     }
 }
